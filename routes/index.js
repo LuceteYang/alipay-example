@@ -37,14 +37,44 @@ router.post('/wappay/pay', function(req, res, next) {
     res.redirect(url);
 });
 
-router.get('/callback/alipay', function(req, res, next) {
-    console.log("get ",req.url);
-    res.send();
-})
-
 router.post('/callback/alipay', function(req, res, next) {
 	console.log("post ",req.url);
-    res.send();
+/*
+        { gmt_create: '2018-08-30 09:58:42',
+        charset: 'utf-8',
+        seller_email: 'dev@wenwo.co.kr',
+        subject: '手机网站支付测试商品',
+        sign: 'YpEgFx+4eC4JFNru9KVSdECNwc4+c3301UNv/BonEDCBYWsxC+Vosz4eVHnOkhCecJwQecmuOX6631MIfXva3jHxZbsv187djIzt2H9T1MtyzoF7Lp3SR004bIZ2vIR1K7orczPDu4b1zG8O0GoHBeaL6uwRyN4MBfVXRrBbI9CauKy/iQVlCnUc5FExNdmZGJcz/kHuEtjFzs/+e5KkQLeWixTbZmuOEHzTyvLz5rvoPzwyi6uhcXK2BF+F944+gEpayVpXFJKR9mfsJ/DljjHM6ctvIBq/YUbbLw3j7LlcAjbU0YrY08yydNQAkbIsYypvhyUYyc4hnihwiJ7rdA==',
+        body: '购买测试商品0.01元',
+        buyer_id: '2088132800714888',
+        invoice_amount: '0.01',
+        notify_id: 'c4107f14d47fcb86b687130e1ba4502msl',
+        fund_bill_list: '[{"amount":"0.01","fundChannel":"ALIPAYACCOUNT"}]',
+        notify_type: 'trade_status_sync',
+        trade_status: 'TRADE_SUCCESS',
+        receipt_amount: '0.01',
+        buyer_pay_amount: '0.01',
+        app_id: '2018082761110598',
+        sign_type: 'RSA2',
+        seller_id: '2088131107145766',
+        gmt_payment: '2018-08-30 09:58:43',
+        notify_time: '2018-08-30 09:58:43',
+        version: '1.0',
+        out_trade_no: '2018830105820364',
+        total_amount: '0.01',
+        trade_no: '2018083021001004880508053268',
+        auth_app_id: '2018082761110598',
+        buyer_logon_id: '175****1690',
+        point_amount: '0.00' }
+        */
+    res.render('return', {'rescode': "0000", 'resmsg': JSON.stringify(req.body)});
 })
+
+router.post('/finish', function(req, res, next) {
+    //여기서 statuscode랑 resmsg받아서 처리하면되겠네...
+    console.log(req.body);
+    res.render('finish',{"info":JSON.stringify(req.body)});
+});
+
 
 module.exports = router;

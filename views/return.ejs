@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type ="text/javascript">
+        <!--
+        //opener창에 결제 응답 값 세팅 후 finish.jsp로 submit, 현재 팝업 창 close
+        function loadForm(){
+            if(opener && opener.document.regForm){
+                var frm = opener.document.regForm;
+                frm.rescode.value = "<%=rescode%>";
+                frm.resmsg.value = "<%=resmsg%>";
+
+                frm.target = "";
+                frm.action = "/finish";
+
+                frm.submit();
+            }
+            self.close();
+        }
+        //-->
+    </script>
+</head>
+<body onload="javascript:loadForm();">
+</body>
+</html>
