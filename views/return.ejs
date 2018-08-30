@@ -8,12 +8,8 @@
         function loadForm(){
             if(opener && opener.document.regForm){
                 var frm = opener.document.regForm;
-                frm.rescode.value = "<%=rescode%>";
-                frm.resmsg.value = "<%=resmsg%>";
-
                 frm.target = "";
                 frm.action = "/finish";
-
                 frm.submit();
             }
             self.close();
